@@ -1,0 +1,363 @@
+{
+  "1": {
+    "inputs": {
+      "unet_name": "anima-base-v1.0.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "2": {
+    "inputs": {
+      "clip_name": "qwen_3_06b_base.safetensors",
+      "type": "stable_diffusion",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "3": {
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 896,
+      "height": 1152,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "(worst quality, low quality: 1.2), lowres, blurry, jpeg artifacts, oversaturated, harsh contrast, flat lighting, bad anatomy, bad hands, extra fingers, missing fingers, fused fingers, extra limbs, deformed, bad proportions, multiple girls, 2girls, male, multiple views, text, watermark, signature, logo, username, cropped, out of frame, head cut off, human ears, four ears, extra ears, missing tail, extra tail, distorted background, warped perspective",
+      "clip": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "26",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "11": {
+    "inputs": {
+      "pixels": [
+        "8",
+        0
+      ],
+      "vae": [
+        "19",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "13": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.5,
+      "samples": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "LatentUpscaleBy",
+    "_meta": {
+      "title": "缩放Latent（比例）",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "14": {
+    "inputs": {
+      "text": "Masterpiece, best quality, anime illustration, clean line work, soft color palette, delicate details, (1 girl: 1.1), solo, cat girl, white cat ears, very long silver-white hair to waist, pale purple eyes, fair skin, slim petite build, complete head and hair, clear face, natural gaze, three-quarter view or front view, soft gradient shading, subtle film grain",
+      "clip": [
+        "62",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "17": {
+    "inputs": {
+      "samples": [
+        "33",
+        0
+      ],
+      "vae": [
+        "19",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "19": {
+    "inputs": {
+      "ckpt_name": "homochiXLMaleFocused_20.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "21": {
+    "inputs": {
+      "lora_name": "miaomiaoRealskin_anima13.safetensors",
+      "strength_model": 0.8,
+      "strength_clip": 1,
+      "model": [
+        "62",
+        0
+      ],
+      "clip": [
+        "62",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "加载LoRA",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "26": {
+    "inputs": {
+      "eta": 0.5,
+      "sampler_name": "multistep/dpmpp_2m",
+      "scheduler": "karras",
+      "steps": 30,
+      "steps_to_run": -1,
+      "denoise": 1.0,
+      "cfg": 6.0,
+      "seed": 126392316341218,
+      "sampler_mode": "standard",
+      "bongmath": true,
+      "model": [
+        "35",
+        0
+      ],
+      "positive": [
+        "66",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "ClownsharKSampler_Beta",
+    "_meta": {
+      "title": "ClownsharKSampler",
+      "cnr_id": "RES4LYF",
+      "ver": "0dc91c00c4c3fb38e7874fcd7a2a327765e8882c"
+    }
+  },
+  "33": {
+    "inputs": {
+      "seed": 853857189091104,
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "dpmpp_2m_sde",
+      "scheduler": "karras",
+      "denoise": 0.8,
+      "model": [
+        "62",
+        0
+      ],
+      "positive": [
+        "14",
+        0
+      ],
+      "negative": [
+        "98",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "35": {
+    "inputs": {
+      "enable_replay": true,
+      "block_indices": "3-5",
+      "denoise_start_pct": 0.5,
+      "denoise_end_pct": 1.0,
+      "enable_spectrum": false,
+      "spectrum_w": 0.2,
+      "spectrum_m": 16,
+      "spectrum_lam": 0.5,
+      "spectrum_warmup_steps": 6,
+      "spectrum_window_size": 2,
+      "spectrum_flex_window": 0.0,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "AnimaLayerReplayPatcher",
+    "_meta": {
+      "title": "Anima Layer Replay Patcher",
+      "cnr_id": "comfyui-anima-enhancer",
+      "ver": "1.0.2"
+    }
+  },
+  "38": {
+    "inputs": {
+      "filename_prefix": "bai_qwen",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "60": {
+    "inputs": {
+      "lora_name": "moria_lulukaProdigyALPHA2_Illustrious.safetensors",
+      "strength_model": 0.75,
+      "strength_clip": 0.8,
+      "model": [
+        "19",
+        0
+      ],
+      "clip": [
+        "19",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "加载LoRA",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "62": {
+    "inputs": {
+      "lora_name": "QAQv5p2_IL-40-ill-style.safetensors",
+      "strength_model": 0.6,
+      "strength_clip": 1.0,
+      "model": [
+        "60",
+        0
+      ],
+      "clip": [
+        "60",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "加载LoRA",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "66": {
+    "inputs": {
+      "text": "Masterpiece, best quality, anime illustration, clean line work, soft color palette, delicate details, (1 girl: 1.1), solo, cat girl, white cat ears, very long silver-white hair to waist, pale purple eyes, fair skin, slim petite build, complete head and hair, clear face, natural gaze, three-quarter view or front view, soft gradient shading, subtle film grain",
+      "clip": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  },
+  "98": {
+    "inputs": {
+      "text": "(worst quality, low quality: 1.2), lowres, blurry, jpeg artifacts, oversaturated, harsh contrast, flat lighting, bad anatomy, bad hands, extra fingers, missing fingers, fused fingers, extra limbs, deformed, bad proportions, multiple girls, 2girls, male, multiple views, text, watermark, signature, logo, username, cropped, out of frame, head cut off, human ears, four ears, extra ears, missing tail, extra tail, distorted background, warped perspective",
+      "clip": [
+        "62",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码",
+      "cnr_id": "comfy-core",
+      "ver": "0.26.2"
+    }
+  }
+}

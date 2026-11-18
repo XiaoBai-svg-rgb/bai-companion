@@ -1,0 +1,118 @@
+{
+  "10": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "homochiXLMaleFocused_20.safetensors"
+    }
+  },
+  "20": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "lora_name": "moria_lulukaProdigyALPHA2_Illustrious.safetensors",
+      "strength_model": 0.75,
+      "strength_clip": 0.8,
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "10",
+        1
+      ]
+    }
+  },
+  "30": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "lora_name": "QAQv5p2_IL-40-ill-style.safetensors",
+      "strength_model": 0.6,
+      "strength_clip": 1.0,
+      "model": [
+        "20",
+        0
+      ],
+      "clip": [
+        "20",
+        1
+      ]
+    }
+  },
+  "40": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "masterpiece, best quality, anime illustration, clean lineart, soft colors, (1girl:1.1), solo, silver white hair, very long hair to waist, white cat ears, pale purple eyes, pale skin, petite, slim",
+      "clip": [
+        "30",
+        1
+      ]
+    }
+  },
+  "50": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "worst quality, low quality, normal quality, lowres, blurry, jpeg artifacts, bad anatomy, bad hands, extra fingers, six fingers, fused fingers, malformed hands, extra limbs, bad proportions, deformed, text, letters, watermark, signature, logo, username, cropped, out of frame, (head cut off:1.4), full body, whole body, standing, white background, simple background, plain background, character sheet, reference sheet, multiple views, cropped at knees, isolated on white, front view sheet, spread legs",
+      "clip": [
+        "30",
+        1
+      ]
+    }
+  },
+  "60": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 832,
+      "height": 1216,
+      "batch_size": 1
+    }
+  },
+  "70": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 20261109,
+      "steps": 28,
+      "cfg": 6.0,
+      "sampler_name": "dpmpp_2m_sde",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": [
+        "30",
+        0
+      ],
+      "positive": [
+        "40",
+        0
+      ],
+      "negative": [
+        "50",
+        0
+      ],
+      "latent_image": [
+        "60",
+        0
+      ]
+    }
+  },
+  "80": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "70",
+        0
+      ],
+      "vae": [
+        "10",
+        2
+      ]
+    }
+  },
+  "90": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "80",
+        0
+      ],
+      "filename_prefix": "bai_photo"
+    }
+  }
+}
