@@ -1,0 +1,24 @@
+# 模型权重
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# 图片大文件
+*.psd
+*.zip
+!stickers/*.png
+
+# 运行产物
+__pycache__/
+*.log
+*.tmp
+_output/
+temp/
+
+# 密钥与配置
+.env
+*_config.json
+tokens*.json
+*.pem
+*.key

@@ -1,0 +1,96 @@
+【白 · Q 版表情包提示词（最终交付版）】
+
+========================================================
+参数
+========================================================
+工作流   bai_qwen.json（原版，不动结构）
+底模     anima-base-v1.0
+LoRA     miaomiao 0.80 / moria 0.75 / QAQ 0.60
+尺寸     896 × 1152
+放大     1.5
+一段     ClownsharKSampler，30 步，CFG 6.0，denoise 1.0
+二段     KSampler，denoise 0.8
+提示词   66 = 14 = 正向；7 = 98 = 负向（四个都要写）
+
+========================================================
+正向（基础，每张都带）
+========================================================
+masterpiece, best quality, anime illustration, cute,
+(chibi: 1.4), (solo: 1.7), 1girl, single character, one person,
+super deformed, 3 heads tall, standing,
+(thin lineart: 1.1), clean delicate lines,
+soft pastel colors, flat color, gentle shading,
+(white background: 1.5), plain background, no border, no frame,
+silver-white hair, short fluffy hair, white cat ears, pink inner ear,
+large purple eyes, closed eyes, big smile, :d, blush,
+light navy blue dress, white lace collar, small ribbon at chest, cat tail
+
+========================================================
+负向（基础，每张都带）
+========================================================
+(worst quality, low quality: 1.3), lowres, blurry, jpeg artifacts,
+thick outline, bold lines, heavy contrast, heavy shading, oversaturated,
+realistic, photo, 3d, render,
+(realistic proportions: 1.4), long legs, tall, adult body, mature face, sharp eyes,
+(multiple girls: 2.0), (2girls: 1.9), 3girls, extra characters, duplicate, clone, twin,
+hand, holding, arm in frame,
+border, frame, ornamental border, decorative background, gradient background, busy background,
+bad anatomy, extra limbs, extra fingers, fused fingers,
+text, watermark, signature, nsfw, nude
+
+========================================================
+12 个表情（接在正向末尾）
+========================================================
+01 开心    (happy: 1.2), closed eyes, big smile, :d
+02 害羞    (shy: 1.2), blush, small smile, looking away, hands together
+03 生气    (pout: 1.2), angry, puffed cheeks, v-shaped eyebrows
+04 疑惑    (confused: 1.2), head tilt, one eye smaller, :o
+05 困      (sleepy: 1.2), half closed eyes, tiny yawn
+06 惊讶    (surprised: 1.2), wide eyes, open mouth, :o
+07 哭      (crying: 1.3), tearful eyes, tears
+08 得意    (smug: 1.2), one eye closed, ;d
+09 无语    (expressionless: 1.2), narrow eyes, straight mouth
+10 爱心    (love: 1.3), heart shaped pupils, blush
+11 委屈    (sad: 1.2), puppy eyes, drooping ears
+12 打瞌睡  (dozing: 1.2), closed eyes, sitting, zzz
+
+========================================================
+四条硬规则（踩了就变霓虹／多只）
+========================================================
+① 负向里一个颜色名都不要写
+   （cyan / magenta / teal / purple / 红 / 蓝 都不写）
+   写了反而会画出该颜色
+
+② 正向不要给描边加厚
+   写 thick / bold outline → 会变成霓虹粗线
+   只用 thin lineart
+
+③ 颜色只写在部位上
+   silver-white hair / purple eyes / navy blue dress
+   不要写 "purple palette" 这类整体色调词
+
+④ 不加 full body / close-up / fills the frame / sparkles / cat companion
+   → 会变特写、加减手、多出小人小动物
+
+========================================================
+不稳时的三个救命旋钮
+========================================================
+颜色发紫发霓虹   → QAQ 0.60 → 0.45，moria 0.75 → 0.60
+角色太小         → 出图后用裁切脚本放大，不要改提示词
+出现两只/多只    → (multiple girls: 2.0) 已有，再不行换种子重跑
+
+========================================================
+最稳的复刻方式（推荐）
+========================================================
+用你满意的那张当底图走 img2img：
+  LoadImage → VAEEncode（qwen VAE，节点 3）→ 第一段采样
+  denoise 0.50 ~ 0.55
+  正向只写表情 + 姿势，颜色让底图带
+  SaveImage 接 VAEDecode（节点 8）
+这样能锁住画风，只换表情。
+
+========================================================
+出图后
+========================================================
+python E:\文本对话\白_表情包\抠图裁切v3.py <出图目录> <输出目录>
+→ 抠透明 → 只留最大一只 → 放大 92% → 512×512 PNG

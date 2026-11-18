@@ -1,0 +1,24 @@
+【生图提示词】
+
+== 正向 ==
+
+Masterpiece, best quality, anime illustration, clean line work, soft color palette, delicate details, (1 girl: 1.1), solo, cat girl, white cat ears, very long silver-white hair to waist, pale purple eyes, fair skin, slim petite build, complete head and hair, clear face, natural gaze, three-quarter view or front view, soft gradient shading, subtle film grain
+
+
+== 负向 ==
+
+(worst quality, low quality: 1.2), lowres, blurry, jpeg artifacts, oversaturated, harsh contrast, flat lighting, bad anatomy, bad hands, extra fingers, missing fingers, fused fingers, extra limbs, deformed, bad proportions, multiple girls, 2girls, male, multiple views, text, watermark, signature, logo, username, cropped, out of frame, head cut off, human ears, four ears, extra ears, missing tail, extra tail, distorted background, warped perspective
+
+
+# 用法
+#   1. 保存本文件 → 后台监听脚本 5 秒内自动推到云端
+#   2. 手动推一次：python image_prompt_cloud_sync.py --once
+#   3. 只看差异：  python image_prompt_cloud_sync.py --dry
+#   4. 从云端拉回：python image_prompt_cloud_sync.py --pull
+#
+# 云端目标文件：/opt/astrbot/data/workflows/bai_qwen.json
+#   == 正向 ==  →  节点 66、14 的 text
+#   == 负向 ==  →  节点 7、98 的 text
+#
+# 注意：== 正向 == / == 负向 == 这两行标记不能删，
+#       标记下面写的内容才会被读取。
